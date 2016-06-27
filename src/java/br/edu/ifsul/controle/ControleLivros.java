@@ -1,7 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.edu.ifsul.controle;
 
-import br.edu.ifsul.dao.LivrosDAO;
 import br.edu.ifsul.dao.GeneroDAO;
+import br.edu.ifsul.dao.LivrosDAO;
 import br.edu.ifsul.modelo.Livros;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -12,14 +17,15 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "controleLivros")
 @SessionScoped
 public class ControleLivros implements Serializable {
-
+    
     @EJB
     private LivrosDAO dao;
     private Livros objeto;
     @EJB
     private GeneroDAO daoGenero;
-
+    
     public ControleLivros() {
+
     }
 
     public String listar() {
@@ -28,6 +34,7 @@ public class ControleLivros implements Serializable {
 
     public void novo() {
         objeto = new Livros();
+
     }
 
     public void salvar() {
@@ -36,32 +43,34 @@ public class ControleLivros implements Serializable {
                 dao.persist(objeto);
             } else {
                 dao.merge(objeto);
+         
             }
-            UtilMensagem.mensagemInformacao("Objeto persistido com sucesso");
-
+            UtilMensagem.mensagemInformacao("Objeto persistido com sucesso!");
         } catch (Exception e) {
-            UtilMensagem.mensagemErro("Erro ao persistir: " + e.getMessage());
-
+            UtilMensagem.mensagemErro(e.getMessage());
         }
+
     }
 
     public void editar(Integer id) {
         try {
-            objeto = dao.getObjectById(id);
-
+         objeto = (Livros) dao.getObjectById(id);
+    
         } catch (Exception e) {
-            UtilMensagem.mensagemErro("Erro ao recuperar obejto: " + e.getMessage());
-
+            UtilMensagem.mensagemErro("Erro ao recuperar objeto: " + e.getMessage());
         }
+
     }
 
     public void remover(Integer id) {
         try {
-            objeto = dao.getObjectById(id);
+           objeto = (Livros) dao.getObjectById(id);
             dao.remove(objeto);
             UtilMensagem.mensagemInformacao("Objeto removido com sucesso!");
+
         } catch (Exception e) {
-            UtilMensagem.mensagemErro("Erro a remover objeto: " + e.getMessage());
+
+            UtilMensagem.mensagemErro("Erro ao remover o objeto " + e.getMessage());
         }
     }
 
@@ -69,7 +78,7 @@ public class ControleLivros implements Serializable {
         return dao;
     }
 
-    public void setDao(LivrosDAO dao) {
+    public void setDAO(LivrosDAO dao) {
         this.dao = dao;
     }
 
@@ -88,4 +97,7 @@ public class ControleLivros implements Serializable {
     public void setDaoGenero(GeneroDAO daoGenero) {
         this.daoGenero = daoGenero;
     }
+
+
+
 }

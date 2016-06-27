@@ -21,11 +21,19 @@
                 <h:form id="formMenu">
                     <p:menu>
                         <p:submenu>
-                            <p:menuitem action="#{controleGenero.listar()}" value="Manutenção de Genero" ajax="false"/>
-                            <p:menuitem action="#{controleLivros.listar()}" value="Manutenção de Livros" ajax="false"/>
-                            <p:menuitem action="#{controlePromocao.listar()}" value="Manutenção de Promoções" ajax="false"/>
-                           
+                            <p:menuitem action="#{controleGenero.listar()}" value="Genero" ajax="false"/>
+                            <p:menuitem action="#{controleLivros.listar()}" value="Livros" ajax="false"/>
+                            <p:menuitem action="#{controlePromocao.listar()}" value="Promoções" ajax="false"/>
+                            <p:menuitem action="#{controlePessoaFisica.listar()}" value="Pessoa fisica" ajax="false"/>
+                            <p:menuitem action="#{controlePessoaJuridica.listar()}" value="Pessoa juridica" ajax="false"/>
+                             <p:menuitem action="#{controleVenda.listar()}" value="Vendas" ajax="false"/>
                         </p:submenu>
+                        <p:submenu label="Relatórios">
+                            <p:menuitem action="#{controleRelatorios.imprimeRelatorioLivros()}"
+                                        value="Livros"                                        
+                                        ajax="false"
+                                        target="_blank"/>                                
+                        </p:submenu> 
                     </p:menu>
                 </h:form>
             </p:layoutUnit>

@@ -32,7 +32,7 @@ public class ControleGenero implements Serializable {
         return "form";
     }
 
-    public String salvar(){
+    public void salvar(){
         try {
             if(objeto.getId() == null){
                 dao.persist(objeto);
@@ -40,26 +40,26 @@ public class ControleGenero implements Serializable {
                 dao.merge(objeto);
             }
             UtilMensagem.mensagemInformacao("Objeto persistido com sucesso");
-            return "listar";
+   
         } catch(Exception e){
             UtilMensagem.mensagemErro("Erro ao persistir: "+e.getMessage());
-            return "form";
+        
         }
     }
     
-    public String editar(Integer id){
+    public void editar(Integer id){
         try {
-            objeto = dao.getObjectById(id);
-            return "form";
+            objeto = (Genero) dao.getObjectById(id);
+         
         } catch (Exception e){
             UtilMensagem.mensagemErro("Erro ao recuperar obejto: "+e.getMessage());
-            return "listar";
+     
         }
     }
     
     public void remover(Integer id){
         try {
-            objeto = dao.getObjectById(id);
+            objeto = (Genero) dao.getObjectById(id);
             dao.remove(objeto);
             UtilMensagem.mensagemInformacao("Objeto removido com sucesso!");            
         } catch(Exception e){

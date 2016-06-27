@@ -47,7 +47,7 @@ public class ControlePromocao implements Serializable {
 
     public void editar(Integer id) {
         try {
-            objeto = dao.getObjectById(id);
+            objeto = (Promocao)dao.getObjectById(id);
 
         } catch (Exception e) {
             UtilMensagem.mensagemErro("Erro ao recuperar obejto: " + e.getMessage());
@@ -57,7 +57,7 @@ public class ControlePromocao implements Serializable {
 
     public void remover(Integer id) {
         try {
-            objeto = dao.getObjectById(id);
+            objeto = (Promocao)dao.getObjectById(id);
             dao.remove(objeto);
             UtilMensagem.mensagemInformacao("Objeto removido com sucesso!");
         } catch (Exception e) {
